@@ -1,18 +1,50 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>PIRV Tool</title>
-  <!-- Add a link to the style sheet -->
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PIRV-tool</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Linking BoxIcon for Icon -->
+  <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 </head>
-
 <body>
+  <div class="wrapper">
+    <div class="content">
+      <div class="cards">
+        <div class="card" draggable="true" id="card-1">
+          <div class="info">
+            <label for="name">Name:</label>
+            <input type="text" id="name">
+          </div>
+          <div class="info">
+            <label for="title">Title:</label>
+            <input type="text" id="title">
+          </div>
+          <div class="info">
+            <label for="department">Department:</label>
+            <input type="text" id="department">
+          </div>
+          <div class="buttons">
+            <div class="left">
+              <!-- <div class="icon"><i class='bx bx-move'></i></div> Removed move button -->
+            </div>
+            <div class="right">
+              <button class="edit-button">Edit</button>
+              <button class="delete-button">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="add-card-buttons">
+        <button class="add-card-button top">+</button>
+        <button class="add-card-button right">+</button>
+        <button class="add-card-button bottom">+</button>
+        <button class="add-card-button left">+</button>
+      </div>
+    </div>
+  </div>
 
-  <h1>Hello World!!!</h1>
-  <p>This is text!</p>
-  <!-- Add a link to the JavaScript file -->
   <script src="script.js"></script>
 </body>
-
 </html>
