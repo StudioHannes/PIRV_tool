@@ -1,0 +1,155 @@
+/* Import Google font - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Set background color */
+body {
+  background: lightgray;
+}
+
+/* Set text selection color */
+::selection {
+  color: #fff;
+  background: #6F36FF;
+}
+
+/* Wrapper */
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-width: 330px;
+  width: 100%;
+  background: #fff;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.06);
+}
+
+/* Content */
+.wrapper .content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+}
+
+.content .card {
+  position: relative;
+  cursor: move;
+}
+
+.content .info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.content .info label {
+  font-size: 16px;
+  font-weight: 500;
+  margin-right: 10px;
+  color: #555;
+}
+
+.content .info input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  flex: 1;
+}
+
+.content .buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+  justify-content: space-between; /* Added */
+}
+
+.content .buttons .left {
+  display: flex; /* Added */
+  align-items: center; /* Added */
+}
+
+.content .buttons .right {
+  display: flex; /* Added */
+  align-items: center; /* Added */
+}
+
+.content .buttons button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #6F36FF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.content .buttons button + button {
+  margin-left: 10px; /* Added */
+}
+
+.content .buttons button:hover {
+  opacity: 0.7; /* Added hover effect */
+}
+
+.add-card-buttons {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-card-buttons .add-card-button {
+  background-color: #6F36FF;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.add-card-buttons .add-card-button i {
+  font-size: 16px;
+}
+
+.add-card-buttons .add-card-button:hover {
+  opacity: 0.7;
+}
+
+.add-card-buttons .top {
+  position: absolute;
+  top: -160px;
+}
+
+.add-card-buttons .right {
+  position: absolute;
+  right: -185px;
+}
+
+.add-card-buttons .bottom {
+  position: absolute;
+  bottom: -160px;
+}
+
+.add-card-buttons .left {
+  position: absolute;
+  left: -185px;
+}
