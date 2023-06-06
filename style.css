@@ -1,155 +1,392 @@
-/* Import Google font - Poppins */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
-
-/* Reset CSS */
 * {
+  font-family: 'Open Sans',Helvetica,sans-serif;
+  color: #4B4B4B;
+}
+
+.no-print {
+  position: relative; /* set to relative to preserve child element position */
+}
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  /* prevent elements from changing position and size */
+  .no-print, .no-print * {
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    color: #000;
+    background: #fff;
+    font-size: 16px;
+  }
+}
+
+
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  background-color:#fafafa;
 }
 
-/* Set background color */
-body {
-  background: lightgray;
+
+.dragging {
+  opacity: 0.5;
 }
 
-/* Set text selection color */
-::selection {
-  color: #fff;
-  background: #6F36FF;
+/* Set header styles */
+header {
+  width: auto;
+  /* height: 80px; */
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  align-items: center;
 }
 
-/* Wrapper */
-.wrapper {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  max-width: 330px;
+header .info-container {
+  display: inline;
+  min-width: 260px;
+  width: 300px;
+  margin-left: 20px;
+}
+
+header .input-container {
+  margin-right: 20px;
+  margin-left: 10px;
+  width: auto;
+  height:90px;
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+}
+
+.fields #name {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  /* width: 200px; */
+  border: 2px solid #4B4B4B;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.fields #title {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  /* width: 200px; */
+  border: 2px solid #4B4B4B;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.fields #department {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  /* width: 200px; */
+  border: 2px solid #4B4B4B;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.fields #responsibilities {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  /* width: 250px; */
+  border: 2px solid #4B4B4B;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.edit-button, .delete-button {
+  border: none;
+  padding: 4px, 6px;
+  background-color: rgb(189, 189, 189);
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
+
+.edit-button:hover {
+  border: none;
+  background-color: #4CAF50; 
+  color: white;
+}
+
+
+
+.input-container input[type="submit"] {
+  font-size: 14px;
+  height: 2em;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  color: #4B4B4B;
+  border: 2px solid #4B4B4B;
+  background-color: rgb(227, 234, 220);
+}
+
+.input-container input[type="submit"]:hover {
+  background-color: rgb(120, 170, 70);
+  border: 2px solid #4B4B4B;
+  color: #f7f7f7;
+}
+
+
+/* Styles for a level containers */
+.levels {
+  color: rgb(255, 255, 255);
+  /* box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1); */
+  padding: 20px;
+  margin-top: 0px;
+  margin-bottom: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
   width: 100%;
-  background: #fff;
-  border-radius: 10px;
-  transform: translate(-50%, -50%);
-  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.06);
-}
-
-/* Content */
-.wrapper .content {
+  height: 260px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 30px;
+  flex-direction: row;
   position: relative;
 }
 
-.content .card {
-  position: relative;
-  cursor: move;
+#level-1 {
+  background-color: hsl(51, 93%, 88%, 0.1);
+  border: 2px solid #4B4B4B;
+}
+#level-2 {
+  background-color: hsl(130, 95%, 90%, 0.1);
+  border: 2px solid #4B4B4B;
+}
+#level-3 {
+  background-color: hsl(18, 93%, 88%, 0.1);
+  border: 2px solid #4B4B4B;
+}
+#level-4 {
+  background-color: hsl(168, 93%, 88%, 0.1);
+  border: 2px solid #4B4B4B;
 }
 
-.content .info {
+/* Styles for the level tag */
+.level-tag {
+  color: rgb(255, 255, 255, 0.8);
+  font-family: 'Open Sans',Helvetica,sans-serif;
+  font-weight: 400;
+  position: absolute;
+  bottom: -55px;
+  left: 0;
+  width: 100%;
   display: flex;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 15px;
+  height: 80px;
 }
 
-.content .info label {
-  font-size: 16px;
-  font-weight: 500;
-  margin-right: 10px;
-  color: #555;
-}
-
-.content .info input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  flex: 1;
-}
-
-.content .buttons {
+/* Styles for the level container */
+.levels-container {
   display: flex;
-  gap: 10px;
-  margin-top: 25px;
-  justify-content: space-between; /* Added */
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
-.content .buttons .left {
-  display: flex; /* Added */
-  align-items: center; /* Added */
+
+/* Styles for the leve-lcontainer */
+.level-container {
+  width: 100%;
+  height: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  flex-direction: row;
 }
 
-.content .buttons .right {
-  display: flex; /* Added */
-  align-items: center; /* Added */
+
+
+
+/* The container for each person element */
+.person-container {
+    display: flex;
+    border: 2px solid #4B4B4B;
+    flex-direction: column;
+    width: 12em;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    margin-right: 15px;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
+    align-content: space-between;
 }
 
-.content .buttons button {
+.person-info-container {
+    /* display: flex; */
+    position: relative;
+    height: 100%;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+/* The container for the person's title */
+.person-name-container {
+  margin-bottom: -.5em;
+  font-size: 1.3em;
+  position: relative;
+  font-weight: 600;
+  padding-left: 10px;
+  color: #4B4B4B;
+  /* background-color: rgb(219, 207, 247); */
+}
+
+.person-top-container {
+  margin-bottom: -1em;
+  font-size: 1.3em;
+  font-weight: 600;
+  padding-left: 10px;
+  color: #4B4B4B;
+  background-color: rgb(107, 184, 120);
+}
+
+.person-bottom-container {
+  margin-bottom: -1em;
+  font-size: 1.3em;
+  font-weight: 600;
+  padding-left: 10px;
+  color: #4B4B4B;
+  background-color: rgb(107, 184, 120);
+}
+
+/* The container for the person's title */
+.person-title-container {
+  margin-bottom: -1em;
+  margin-top: -1.5em;
+  font-weight: 300;
+  font-size: .8em;
+  padding-left: 10px;
+  padding-top: 0px;
+  color: #4B4B4B;
+}
+
+/* The container for the person's department */
+.person-department-container {
+  position: relative;
+  font-weight:600;
+  margin-top:1.2em ;
+  font-size: .8em;
+  padding-left: 10px;
+  color: #4B4B4B;
+}
+
+/* The container for the person's responsibilities */
+.person-responsibilities-container {
+  font-weight: 400;
+  font-size: .8em;
+  padding-left: 10px;
+  color: #4B4B4B;
+  border-top: .5px solid #ababab;
+}
+
+/* The footer of each person element */
+.person-footer-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 1.5em;
+  width: auto;
+  border-top: .5px solid #ababab;
+  padding: 7px 7px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.edit-button, .delete-button {
+  border: none;
+  padding: 4px, 6px;
+  background-color: rgb(189, 189, 189);
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
+
+.edit-button:hover {
+  border: none;
+  background-color: #4CAF50; /* Green */
+  color: white;
+}
+
+.delete-button:hover {
+  border: none;
+  background-color: #ae4c4c; /* Green */
+  color: white;
+}
+
+.edit-button {
+  margin-right: 5px;
+}
+
+
+
+
+/* The error message text */
+.error-message {
+  text-align: center;
+  margin: 30px;
+  background-color: rgb(143, 29, 29);
   padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #6F36FF;
-  color: #fff;
-  border: none;
+  color: rgb(255, 255, 255);
+}
+
+
+.hidden {
+  display: none;
+}
+
+
+.footer-container {
+    display: flex;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: -25px;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+
+.footer-description {
+  font-size: 12px;
+  width: auto;
+  margin-right: 10px;
+  padding-left: 20px;
+  align: right;
+}
+
+.footer-button-area {
+  width: auto;
+  z-index: 2;
+}
+
+.print-button {
+  padding: 15px, 10px;
+  border: 1px solid #4B4B4B;
   cursor: pointer;
+  color: #292929;
 }
 
-.content .buttons button + button {
-  margin-left: 10px; /* Added */
-}
-
-.content .buttons button:hover {
-  opacity: 0.7; /* Added hover effect */
-}
-
-.add-card-buttons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.add-card-buttons .add-card-button {
-  background-color: #6F36FF;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  transition: opacity 0.3s;
-}
-
-.add-card-buttons .add-card-button i {
-  font-size: 16px;
-}
-
-.add-card-buttons .add-card-button:hover {
-  opacity: 0.7;
-}
-
-.add-card-buttons .top {
-  position: absolute;
-  top: -160px;
-}
-
-.add-card-buttons .right {
-  position: absolute;
-  right: -185px;
-}
-
-.add-card-buttons .bottom {
-  position: absolute;
-  bottom: -160px;
-}
-
-.add-card-buttons .left {
-  position: absolute;
-  left: -185px;
+.print-button:hover {
+  background-color: #4CAF50;
+  color: white;
 }
