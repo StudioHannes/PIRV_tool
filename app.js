@@ -1,3 +1,25 @@
+document.addEventListener('DOMContentLoaded', function() {
+  const universityNameInput = document.getElementById('university-name');
+  const universityNameHeading = document.getElementById('university-name-heading');
+  const universitySaveButton = document.getElementById('university-save-button');
+  universitySaveButton.addEventListener('click', () => {
+    const inputText = universityNameInput.value.trim();
+    if (inputText) {
+      const headingElement = document.createElement('h2');
+      headingElement.textContent = inputText;
+      universityNameHeading.parentNode.replaceChild(headingElement, universityNameHeading);
+      universitySaveButton.textContent = 'Save';
+      universitySaveButton.style.display = "none";
+      universityNameInput.style.display = "none";
+      universitySaveButton.removeEventListener('click', () => { });
+      universitySaveButton.addEventListener('click', () => {
+        headingElement.parentNode.replaceChild(universityNameInput, headingElement);
+        universitySaveButton.textContent = 'Save';
+      });
+    }
+  });
+});
+
 const levelContainers = Array.from(document.querySelectorAll(".level-container"));
 const nameInput = document.querySelector("#name");
 const titleInput = document.querySelector("#title");
