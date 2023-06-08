@@ -8,14 +8,19 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
+<!-- const universityNameInput = document.getElementById('university-name');
+const universityNameHeading = document.getElementById('university-name-heading'); -->
+
 <body>
 
   <header>
-    <div class="info-container no-print">
-      <p>
-        Add people and move them around by dragging and dropping. Individual card can be edited and removed.
-      </p>
+    <div class="info-container">
+      <input class="no-print" type="text" id="university-name" autocomplete="off"
+        placeholder="Enter the name of your organisation..." required pattern="^[A-Za-z]+$">
+      <h2 id="university-name-heading"></h2>
+      <input type="submit" class="no-print" id="university-save-button" value="Save">
     </div>
+
 
     <form class=" input-container no-print" onsubmit="addNewPerson(event)">
       <div class="fields">
@@ -63,6 +68,10 @@
 
 
   <footer class="footer-container">
+    <div class="footer-container-logos">
+      <img src="media/pirv-logo.png" alt="PIRV logo" class="logo" height="40">
+      <img src="media/erasmus-logo.png" alt="Erasmus logo" class="logo" height="40">
+    </div>
     <div class="footer-description no-print">
       <p>Print button for printing and saving creating PDFs. All the button an unnecessary elements
         will be expluded!
@@ -72,6 +81,13 @@
       <!-- <button type="button" class="print-button no-print" data-print="exclude">Print</button> -->
       <button type="button" class="print-button no-print" onclick="window.print()">Print</button>
     </div>
+
+
+    <!-- Add people and move them around by dragging and dropping. Individual card can be edited and removed. -->
+
+
+
+
 
   </footer>
 
