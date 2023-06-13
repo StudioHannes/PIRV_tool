@@ -8,21 +8,31 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<!-- const universityNameInput = document.getElementById('university-name');
-const universityNameHeading = document.getElementById('university-name-heading'); -->
-
 <body>
+
+
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>-Adding people and moveing them around by dragging and dropping.</p>
+      <p>-Individual card can be edited and removed.</p>
+      <p>-Adding empty cards, for spacing</p>
+    </div>
+
+  </div>
 
   <header>
     <div class="info-container">
-      <input class="no-print" type="text" id="university-name" autocomplete="off"
-        placeholder="Enter the name of your organisation..." required pattern="^[A-Za-z]+$">
+      <input type="text" id="university-name" autocomplete="off" placeholder="Name of the organization..." required
+        pattern="^[A-Za-z]+$">
       <h2 id="university-name-heading"></h2>
-      <input type="submit" class="no-print" id="university-save-button" value="Save">
+      <button class="no-print" id="university-name-button" onclick="toggleEdit()">Save</button>
     </div>
 
-
-    <form class=" input-container no-print" onsubmit="addNewPerson(event)">
+    <form class=" input-container no-print" onsubmit="addNewPerson(event)" id="input-form">
       <div class="fields">
         <input type="text" id="name" autocomplete="off" placeholder="name..." required pattern="^[A-Za-z]+$">
         <input type="text" id="title" autocomplete="on" placeholder="title..." required pattern="^[A-Za-z]+$">
@@ -33,34 +43,42 @@ const universityNameHeading = document.getElementById('university-name-heading')
     </form>
   </header>
 
-
-  <section class="levels-container">
+  <section id="levels-container" class="levels-container">
 
     <div class="levels" id="level-1">
-      <div class="level-container"></div>
+      <div class="level-container" id="level-container-1"></div>
       <div class="level-tag no-print">
-        <p>Level 1</p>
+        <p>Management level 1</p>
+        <button type="button" id="ghost-button-1" class="ghost-button no-print" onclick="createGhost()">add empty
+          card</button>
       </div>
+    </div>
     </div>
 
     <div class="levels" id="level-2">
-      <div class="level-container"></div>
+      <div class="level-container" id="level-container-2"></div>
       <div class="level-tag no-print">
-        <p>Level 2</p>
+        <p>Management level 2</p>
+        <button type="button" id="ghost-button-2" class="ghost-button no-print" onclick="createGhost()">add empty
+          card</button>
       </div>
     </div>
 
     <div class="levels" id="level-3">
-      <div class="level-container" id="bg-3"></div>
+      <div class="level-container" id="level-container-3"></div>
       <div class="level-tag no-print">
-        <p>Level 3</p>
+        <p>Management level 3</p>
+        <button type="button" id="ghost-button-3" class="ghost-button no-print" onclick="createGhost()">add empty
+          card</button>
       </div>
     </div>
 
     <div class="levels" id="level-4">
-      <div class="level-container"></div>
+      <div class="level-container" id="level-container-4"></div>
       <div class="level-tag no-print">
-        <p>Level 4</p>
+        <p>Management level 4</p>
+        <button type="button" id="ghost-button-4" class="ghost-button no-print" onclick="createGhost()">add empty
+          card</button>
       </div>
     </div>
 
@@ -72,22 +90,13 @@ const universityNameHeading = document.getElementById('university-name-heading')
       <img src="media/pirv-logo.png" alt="PIRV logo" class="logo" height="40">
       <img src="media/erasmus-logo.png" alt="Erasmus logo" class="logo" height="40">
     </div>
-    <div class="footer-description no-print">
-      <p>Print button for printing and saving creating PDFs. All the button an unnecessary elements
-        will be expluded!
-      </p>
-    </div>
+
     <div class="footer-button-area no-print">
-      <!-- <button type="button" class="print-button no-print" data-print="exclude">Print</button> -->
+      <button type="button" id="exportBtn" class="no-print">Export</button>
+      <button type="button" id="importBtn" class="no-print">Import</button>
+      <button type="button" id="myBtn" class="help-button no-print" onclick="window.print()">Help</button>
       <button type="button" class="print-button no-print" onclick="window.print()">Print</button>
     </div>
-
-
-    <!-- Add people and move them around by dragging and dropping. Individual card can be edited and removed. -->
-
-
-
-
 
   </footer>
 
