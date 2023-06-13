@@ -137,21 +137,7 @@ let persons = [
     title: "Receptionist",
     department: "Reception",
     responsibilities: "Answering phones and welcoming visitors"
-  },
-  {
-    id: 4,
-    name: "Angela Martin",
-    title: "Senior Accountant",
-    department: "Accounting",
-    responsibilities: "Managing accounts"
-  },
-  {
-    id: 5,
-    name: "Kevin Malone",
-    title: "Accountant",
-    department: "Accounting",
-    responsibilities: "Handling finances"
-  },
+  }
 
 ];
 
