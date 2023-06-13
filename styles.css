@@ -39,15 +39,53 @@ body {
   background-color:#fafafa;
 }
 
-
+  /* Opacity of the cards ghost image that stays in its original place, till card is dropped  */
 .dragging {
   opacity: 0.5;
 }
 
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 /* Set header styles */
 header {
   width: auto;
-  /* height: 80px; */
   display: flex;
   justify-content: space-between;
   padding-bottom: 15px;
@@ -55,20 +93,20 @@ header {
   align-items: center;
 }
 
+/* Organization namemig container styling */
 header .info-container {
   display: flex;
   min-width: 400px;
-  /* width: 300px; */
   margin-left: 20px;
   align-items: stretch;
 }
 
-/* University name field styling */
+/* Organization name field styling */
 .info-container #university-name {
   font-size: 13px;
+  width: auto;
   margin-top: 10px;
   height: 30px;  
-  margin-right: 5px;
   border: 2px solid #4B4B4B;
   padding-left: 10px;
   padding-right: 10px;
@@ -76,11 +114,10 @@ header .info-container {
   padding-bottom: 10px;
 }
 
-
-/* Save University button styling */
-.info-container input[type="submit"] {
+.info-container button {
   margin-top: 10px;
-  height: 53px;  
+  margin-left: 10px;
+  height: 53px;
   font-size: 14px;
   padding-left: 10px;
   padding-right: 10px;
@@ -91,14 +128,11 @@ header .info-container {
   background-color: rgb(227, 234, 220);
 }
 
-.info-container input[type="submit"]:hover {
+.info-container button:hover {
   background-color: rgb(120, 170, 70);
   border: 2px solid #4B4B4B;
   color: #f7f7f7;
 }
-
-
-
 
 header .input-container {
   margin-right: 20px;
@@ -110,6 +144,7 @@ header .input-container {
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
+  z-index: 3;
 }
 
 .fields #name {
@@ -160,23 +195,7 @@ header .input-container {
   padding-bottom: 15px;
 }
 
-.edit-button, .delete-button {
-  border: none;
-  padding: 4px, 6px;
-  background-color: rgb(189, 189, 189);
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
-}
-
-.edit-button:hover {
-  border: none;
-  background-color: #4CAF50; 
-  color: white;
-}
-
-
-
+/* Styles for a headers data entry "Add Person-button"*/
 .input-container input[type="submit"] {
   font-size: 14px;
   height: 2em;
@@ -189,6 +208,7 @@ header .input-container {
   background-color: rgb(227, 234, 220);
 }
 
+/* Styles for a hover effect for headers data entry "Add Person-button" */
 .input-container input[type="submit"]:hover {
   background-color: rgb(120, 170, 70);
   border: 2px solid #4B4B4B;
@@ -199,19 +219,20 @@ header .input-container {
 /* Styles for a level containers */
 .levels {
   color: rgb(255, 255, 255);
-  /* box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1); */
   padding: 20px;
   margin-top: 0px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
   margin-left: 20px;
   margin-right: 20px;
   width: 100%;
-  height: 260px;
+  min-height: 280px;
+  height: auto;
   display: flex;
   flex-direction: row;
   position: relative;
 }
 
+/* Border and background-color settings for a management level contianers */
 #level-1 {
   background-color: hsl(51, 93%, 88%, 0.1);
   border: 2px solid #4B4B4B;
@@ -229,13 +250,13 @@ header .input-container {
   border: 2px solid #4B4B4B;
 }
 
-/* Styles for the level tag */
+/* Styles for the management level tag */
 .level-tag {
   color: rgb(255, 255, 255, 0.8);
   font-family: 'Open Sans',Helvetica,sans-serif;
   font-weight: 400;
   position: absolute;
-  bottom: -55px;
+  bottom: -60px;
   left: 0;
   width: 100%;
   display: flex;
@@ -244,32 +265,74 @@ header .input-container {
   height: 80px;
 }
 
-/* Styles for the level container */
+/* Styles for the management levels container (layout for displaying the level-containers)*/
 .levels-container {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-
-/* Styles for the leve-lcontainer */
+/* The management container layout settings */
 .level-container {
-  /* width: 100%;
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: nowrap;
-  flex-direction: row; */
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
+
+
+/* The container for each person element */
+.ghost-container {
+    border: 0.5px dotted hsl(0, 0%, 22%, 0.1);
+    display: flex;
+    cursor: pointer;
+    height: 250px;
+    width: 180px;
+    background-color: rgb(255, 255, 255, 0.2);
+    margin: 7.5px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+/* "add empty card" button settings */
+.ghost-button {
+  border: none;
+  padding: 4px;
+  margin-left: 10px;
+  background-color: rgb(189, 189, 189);
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
+
+/* "add empty card" buttons hover settings */
+.ghost-button:hover {
+  border: none;
+  background-color: rgb(158, 158, 158) ;
+  color: white;
+}
+
+/* ghost-delete-button settings */
+.ghost-delete-button {
+  border: none;
+  margin: 6px;
+  padding: 4px, 6px;
+  background-color: rgb(189, 189, 189);
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
+
+/* ghost-delete-button hover settings */
+.ghost-delete-button:hover {
+  border: none;
+  background-color: #ae4c4c; /* Green */
+  color: white;
+}
+
+
 
 
 
@@ -277,90 +340,93 @@ header .input-container {
 /* The container for each person element */
 .person-container {
     display: flex;
+    cursor: pointer;
     border: 2px solid #4B4B4B;
     flex-direction: column;
-    width: 12em;
-    height: 100%;
+    height: 250px;
+    width: 180px;
     background-color: rgb(255, 255, 255);
-    margin-right: 15px;
+    margin: 7.5px;
     box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.1);
-    align-content: space-between;
 }
 
+/* person cards info section settings */
 .person-info-container {
-    /* display: flex; */
     position: relative;
-    height: 100%;
+    height: 90%;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-start;
 }
 
+.person-input{
+  width: 85%;
+  font-size: 14px;
+  margin: 5px;
+  border: 1px solid #4B4B4B;
+  padding: 5px;
+}
+
 /* The container for the person's title */
 .person-name-container {
-  margin-bottom: -.5em;
-  font-size: 1.3em;
-  position: relative;
-  font-weight: 600;
-  padding-left: 10px;
-  color: #4B4B4B;
-  /* background-color: rgb(219, 207, 247); */
-}
-
-.person-top-container {
-  margin-bottom: -1em;
-  font-size: 1.3em;
-  font-weight: 600;
-  padding-left: 10px;
-  color: #4B4B4B;
-  background-color: rgb(107, 184, 120);
-}
-
-.person-bottom-container {
-  margin-bottom: -1em;
-  font-size: 1.3em;
-  font-weight: 600;
-  padding-left: 10px;
-  color: #4B4B4B;
-  background-color: rgb(107, 184, 120);
+    font-size: 1.0em;
+    font-weight: 600;
+    margin-bottom: -0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 /* The container for the person's title */
 .person-title-container {
-  margin-bottom: -1em;
-  margin-top: -1.5em;
-  font-weight: 300;
   font-size: .8em;
+  font-weight: 300;
+  margin-bottom: -0.5em;  
   padding-left: 10px;
-  padding-top: 0px;
+  padding-right: 10px;
   color: #4B4B4B;
 }
 
 /* The container for the person's department */
 .person-department-container {
-  position: relative;
-  font-weight:600;
-  margin-top:1.2em ;
   font-size: .8em;
+  font-weight:600;  
   padding-left: 10px;
+  padding-right: 10px;
   color: #4B4B4B;
 }
 
+.fields #responsibilities {
+  font-size: 14px;
+  margin-bottom: 10px;
+  margin-right: 5px;
+  /* width: 250px; */
+  border: 2px solid #4B4B4B;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+
+
+/* person cards edit-mode  fields settigs */
+
 /* The container for the person's responsibilities */
 .person-responsibilities-container {
-  font-weight: 400;
   font-size: .8em;
+  font-weight: 400;
   padding-left: 10px;
+  padding-right: 10px;
   color: #4B4B4B;
   border-top: .5px solid #ababab;
 }
 
-/* The footer of each person element */
+/* person cards footer section settings (are for buttons) */
 .person-footer-container{
   display: flex;
   justify-content: space-around;
   align-items: center;
-  height: 1.5em;
+  /* height: 1em; */
   width: auto;
   border-top: .5px solid #ababab;
   padding: 7px 7px;
@@ -370,8 +436,10 @@ header .input-container {
   justify-content: flex-end;
 }
 
-.edit-button, .delete-button {
+/* person cards footer section button settings */
+.copy-button, .edit-button, .delete-button {
   border: none;
+  /* border: 2px solid #4B4B4B; */
   padding: 4px, 6px;
   background-color: rgb(189, 189, 189);
   transition-duration: 0.4s;
@@ -379,9 +447,15 @@ header .input-container {
   color: white;
 }
 
+.copy-button:hover {
+  border: none;
+  background-color: rgb(158, 158, 158) ;
+  color: white;
+}
+
 .edit-button:hover {
   border: none;
-  background-color: #4CAF50; /* Green */
+  background-color: rgb(158, 158, 158) ;
   color: white;
 }
 
@@ -391,22 +465,39 @@ header .input-container {
   color: white;
 }
 
+.copy-button {
+  margin-right: 5px;
+}
+
 .edit-button {
   margin-right: 5px;
 }
 
-
+.save-button {
+  border: none;
+  width: 50px;
+  position: sticky;
+  /* border: 2px solid #4B4B4B; */
+  margin-left: 55px;
+  margin-right: 55px;
+  margin-bottom: 7px;
+  margin-top: -7px;
+  background-color: #4CAF50;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
 
 
 /* The error message text */
 .error-message {
     position: absolute;
-    top: 7%;
+    top: 15%;
     left: 85%;
     transform: translate(-50%, -50%);
     text-align: right;
     margin: 30px;
-    background-color: rgb(143, 29, 29);
+    background-color: rgb(192, 104, 104);
     padding: 10px 20px;
     color: rgb(255, 255, 255);
 }
@@ -417,6 +508,7 @@ header .input-container {
 }
 
 
+/* footer container settings */
 .footer-container {
     background-color: rgb(235, 234, 234);
     display: flex;
@@ -455,6 +547,7 @@ header .input-container {
 }
 
 .footer-button-area {
+  display: flex;
   width: auto;
   z-index: 2;
 }
@@ -462,6 +555,7 @@ header .input-container {
 .print-button {
   font-size: 14px;
   height: 2em;
+  margin-left: 10px;
   padding-left: 20px;
   padding-right: 20px;
   padding-top: 15px;
@@ -471,8 +565,53 @@ header .input-container {
   background-color: rgb(227, 234, 220);
 }
 
+#myBtn {
+  font-size: 14px;
+  height: 2em;
+  margin-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  color: #4B4B4B;
+  border: 2px solid #4B4B4B;
+  background-color: rgb(227, 234, 220);
+}
+
+#exportBtn, #importBtn {
+  font-size: 14px;
+  height: 2em;
+  margin-left: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 15px;
+  padding-bottom: 30px;
+  color: #4B4B4B;
+  border: 2px solid #4B4B4B;
+  background-color: rgb(227, 234, 220);
+}
+  
 .print-button:hover {
   background-color: rgb(120, 170, 70);
-  border: 2px solid #4B4B4B;
+  border: 2px solid rgb(120, 170, 70);
+  color: #f7f7f7;
+}
+
+#myBtn:hover {
+  background-color: rgb(190, 190, 190);
+  border: 2px solid rgb(190, 190, 190);
+  color: #f7f7f7;
+}
+
+#exportBtn:hover {
+  background-color: rgb(190, 190, 190);
+  border: 2px solid rgb(190, 190, 190);
+  color: #f7f7f7;
+}
+
+
+#importBtn:hover {
+  background-color: rgb(190, 190, 190);
+  border: 2px solid rgb(190, 190, 190);
   color: #f7f7f7;
 }
