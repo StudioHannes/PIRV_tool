@@ -90,13 +90,13 @@ header {
   justify-content: space-between;
   padding-bottom: 15px;
   padding-top: 15px;
-  align-items: center;
+  align-items: baseline;
 }
 
 /* Organization namemig container styling */
 header .info-container {
   display: flex;
-  min-width: 400px;
+  min-width: 280px;
   margin-left: 20px;
   align-items: stretch;
 }
@@ -104,7 +104,7 @@ header .info-container {
 /* Organization name field styling */
 .info-container #university-name {
   font-size: 13px;
-  width: auto;
+  width: 13em;
   margin-top: 10px;
   height: 30px;  
   border: 2px solid #4B4B4B;
@@ -520,6 +520,7 @@ header .input-container {
     justify-content: space-between;
     align-items: center;
     flex-direction: row;
+    margin-top: 20px;
 }
 
 
