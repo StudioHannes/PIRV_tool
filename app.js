@@ -110,35 +110,31 @@ const errorContainer = document.querySelector(".error-container");
 
 // Defining starting cards personas
 let persons = [
-  {
-    id: 0,
-    name: "Michael Scott",
-    title: "Regional Manager",
-    department: "Management",
-    responsibilities: "Managing the branch"
-  },
-  {
-    id: 1,
-    name: "Dwight Schrute",
-    title: "Assistant to the Regional Manager",
-    department: "Sales",
-    responsibilities: "Selling paper"
-  },
-  {
-    id: 2,
-    name: "Jim Halpert",
-    title: "Sales Representative",
-    department: "Sales",
-    responsibilities: "Playing pranks on Dwight"
-  },
-  {
-    id: 3,
-    name: "Pam Beesly",
-    title: "Receptionist",
-    department: "Reception",
-    responsibilities: "Answering phones and welcoming visitors"
-  }
-
+{
+  id: 0,
+  name: "Bianca Rossi",
+  title: "Rector",
+  department: "University Management",
+  responsibilities: "Overall Lead of the University"
+},
+{
+  id: 1, name: "Louis Durand",
+    title: "Vice-Rector for International Affairs",
+      department: "University Management",
+        responsibilities: "Overall Lead International Affairs"
+},
+{
+  id: 2, name: "Sami Virtanen",
+    title: "Head of International Relations Office",
+      department: "International Relations Office",
+        responsibilities: "Head Coordinator International Relations"
+},
+{
+  id: 3, name: "Sabine Weber",
+    title: "Mobility Specialist",
+      department: "International Relations Office",
+        responsibilities: "Incoming Erasmus+ mobility"
+},
 ];
 
 // add event listeners to all level-container
