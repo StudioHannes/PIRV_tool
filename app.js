@@ -99,6 +99,20 @@ function toggleEdit() {
   }
 }
 
+function preparePrint() {
+  var ghostContainer = document.querySelector('.ghost-container');
+
+  if (ghostContainer) {
+    ghostContainer.style.opacity = 0;
+    setTimeout(function() {
+      window.print();
+      ghostContainer.style.opacity = 1; // Restore original opacity after printing
+    }, 100);
+  } else {
+    window.print();
+  }
+}
+
 function editLevelName(level) {
   var titleElement = document.getElementById(`level-${level}-name-title`);
   var inputElement = document.getElementById(`level-${level}-name-input`);
