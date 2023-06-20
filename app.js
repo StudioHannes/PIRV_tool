@@ -99,6 +99,32 @@ function toggleEdit() {
   }
 }
 
+function editLevelName(level) {
+  var titleElement = document.getElementById(`level-${level}-name-title`);
+  var inputElement = document.getElementById(`level-${level}-name-input`);
+  var editButton = document.getElementById(`level-${level}-edit-button`);
+  var saveButton = document.getElementById(`level-${level}-save-button`);
+
+  inputElement.value = titleElement.innerText;
+  titleElement.classList.add("hidden");
+  inputElement.classList.remove("hidden");
+  editButton.classList.add("hidden");
+  saveButton.classList.remove("hidden");
+}
+
+function saveLevelName(level) {
+  var titleElement = document.getElementById(`level-${level}-name-title`);
+  var inputElement = document.getElementById(`level-${level}-name-input`);
+  var editButton = document.getElementById(`level-${level}-edit-button`);
+  var saveButton = document.getElementById(`level-${level}-save-button`);
+
+  titleElement.innerText = inputElement.value;
+  titleElement.classList.remove("hidden");
+  inputElement.classList.add("hidden");
+  editButton.classList.remove("hidden");
+  saveButton.classList.add("hidden");
+  saveButton.classList.remove("no-print");
+}
 
 // Definig variables
 const levelContainers = Array.from(document.querySelectorAll(".level-container"));
