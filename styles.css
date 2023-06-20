@@ -281,6 +281,24 @@ header .input-container {
   justify-content: center;
 }
 
+/* "edit name"-buttons hover settings */
+.edit-level-name-button {
+  border: none;
+  padding: 4px;
+  margin-left: 10px;
+  background-color: rgb(189, 189, 189);
+  transition-duration: 0.4s;
+  cursor: pointer;
+  color: white;
+}
+
+/* "edit name"-buttons hover settings */
+.edit-level-name-button:hover {
+  border: none;
+  background-color: rgb(158, 158, 158) ;
+  color: white;
+}
+
 
 /* The container for each person element */
 .ghost-container {
