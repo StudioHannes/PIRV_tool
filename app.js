@@ -100,18 +100,25 @@ function toggleEdit() {
 }
 
 function preparePrint() {
-  var ghostContainer = document.querySelector('.ghost-container');
+  var ghostContainers = document.querySelectorAll('.ghost-container');
 
-  if (ghostContainer) {
-    ghostContainer.style.opacity = 0;
+  if (ghostContainers.length > 0) {
+    ghostContainers.forEach(function(ghostContainer) {
+      ghostContainer.style.opacity = 0;
+    });
+
     setTimeout(function() {
       window.print();
-      ghostContainer.style.opacity = 1; // Restore original opacity after printing
+
+      ghostContainers.forEach(function(ghostContainer) {
+        ghostContainer.style.opacity = 1; // Restore original opacity after printing
+      });
     }, 100);
   } else {
     window.print();
   }
 }
+
 
 function editLevelName(level) {
   var titleElement = document.getElementById(`level-${level}-name-title`);
