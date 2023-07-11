@@ -377,52 +377,46 @@ function save() {
     // Set the file name
     const fileName = 'export.html';
 
-    // Create a new FileSaver object
-    const fileSaver = new FileSaver();
-
     // Save the file
-    fileSaver.save(blob, fileName);
+    saveAs(blob, fileName);
 }
 
 function load() {
-    // Get the file name
-    const fileName = prompt('Enter the file name');
+    // Prompt the user to select a file
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
 
-    // Create a new XMLHttpRequest object
-    const xhr = new XMLHttpRequest();
+    // Handle file selection
+    fileInput.addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
 
-    // Handle the onload event
-    xhr.onload = function () {
-        // Get the response text
-        const responseText = xhr.responseText;
+        // Handle file reading
+        reader.onload = function (fileEvent) {
+            const contents = fileEvent.target.result;
 
-        // Parse the response as HTML
-        const parsedHTML = new DOMParser().parseFromString(responseText, 'text/html');
+            // Create a temporary container to parse the loaded HTML
+            const tempContainer = document.createElement('div');
+            tempContainer.innerHTML = contents;
 
-        // Get the levels container from the parsed HTML
-        const levelsContainer = parsedHTML.getElementById('levels-container');
+            // Get the levels container from the loaded HTML
+            const levelsContainer = tempContainer.querySelector('#levels-container');
 
-        // Get the current levels container on the page
-        const currentLevelsContainer = document.getElementById('levels-container');
+            // Remove the existing levels container from the page
+            const existingLevelsContainer = document.getElementById('levels-container');
+            existingLevelsContainer.parentNode.removeChild(existingLevelsContainer);
 
-        // Replace the current levels container with the loaded one
-        currentLevelsContainer.innerHTML = levelsContainer.innerHTML;
-    };
+            // Append the loaded levels container to the page
+            document.body.appendChild(levelsContainer);
+        };
 
-    // Open the file
-    xhr.open('GET', fileName, true);
+        // Read the file as text
+        reader.readAsText(file);
+    });
 
-    // Send the request
-    xhr.send();
+    // Trigger click event on the file input element to open the file selection dialog
+    fileInput.click();
 }
-
-// Add event listener to the export button
-const exportButton = document.getElementById('exportBtn');
-exportButton.addEventListener('click', saveLevelsContainer);
-
-// Add event listener to the import button
-const importButton = document.getElementById('importBtn');
-importButton.addEventListener('change', loadLevelsContainer);
 
 
 
