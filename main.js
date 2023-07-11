@@ -382,42 +382,99 @@ function save() {
 }
 
 function load() {
-    // Prompt the user to select a file
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
 
-    // Handle file selection
     fileInput.addEventListener('change', function (event) {
         const file = event.target.files[0];
         const reader = new FileReader();
 
-        // Handle file reading
         reader.onload = function (fileEvent) {
             const contents = fileEvent.target.result;
 
-            // Create a temporary container to parse the loaded HTML
             const tempContainer = document.createElement('div');
             tempContainer.innerHTML = contents;
 
-            // Get the levels container from the loaded HTML
-            const levelsContainer = tempContainer.querySelector('#levels-container');
+            const loadedLevelsContainer = tempContainer.querySelector('#levels-container');
+            const existingLevelsContainer = document.querySelector('#levels-container');
+            existingLevelsContainer.innerHTML = loadedLevelsContainer.innerHTML;
 
-            // Remove the existing levels container from the page
-            const existingLevelsContainer = document.getElementById('levels-container');
-            existingLevelsContainer.parentNode.removeChild(existingLevelsContainer);
+            const newLevelContainers = existingLevelsContainer.querySelectorAll('.level-container');
+            newLevelContainers.forEach(function (levelContainer) {
+                Sortable.create(levelContainer, options);
+                attachEventListenersToCards(levelContainer);
+            });
 
-            // Append the loaded levels container to the page
-            document.body.appendChild(levelsContainer);
+
         };
 
-        // Read the file as text
         reader.readAsText(file);
     });
 
-    // Trigger click event on the file input element to open the file selection dialog
     fileInput.click();
 }
 
+function attachEventListeners() {
+    var parentElement = document.body;
+
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('copy-button')) {
+            var card = target.closest('.card');
+            var cardContent = card.querySelector('.card-content').innerHTML;
+            // Perform the copy action using the card content
+            console.log('Copy button clicked:', cardContent);
+        }
+    });
+
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('delete-button')) {
+            var card = target.closest('.card');
+            // Perform the delete action with the card element
+            console.log('Delete button clicked:', card);
+        }
+    });
+
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('edit-button')) {
+            var card = target.closest('.card');
+            // Perform the edit action with the card element
+            console.log('Edit button clicked:', card);
+        }
+    });
+}
+
+function attachEventListenersToCards(parentElement) { // Moved this function definition before calling it in load()
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('copy-button')) {
+            var card = target.closest('.card');
+            var cardContent = card.querySelector('.card-content').innerHTML;
+            // Perform the copy action using the card content
+            console.log('Copy button clicked:', cardContent);
+        }
+    });
+
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('delete-button')) {
+            var card = target.closest('.card');
+            // Perform the delete action with the card element
+            console.log('Delete button clicked:', card);
+        }
+    });
+
+    parentElement.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target.classList.contains('edit-button')) {
+            var card = target.closest('.card');
+            // Perform the edit action with the card element
+            console.log('Edit button clicked:', card);
+        }
+    });
+}
 
 
 // Function to add event listeners to the buttons
@@ -477,3 +534,34 @@ function createGhost(event) {
 }
 
 
+// Your existing JavaScript code
+
+// Attach event listeners to a parent element that already exists on the page
+var parentElement = document.body;
+
+// Add event delegation for the copy button
+parentElement.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.classList.contains('copy-button')) {
+        // Handle the copy button click event
+        // ...
+    }
+});
+
+// Add event delegation for the delete button
+parentElement.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.classList.contains('delete-button')) {
+        // Handle the delete button click event
+        // ...
+    }
+});
+
+// Add event delegation for the edit button
+parentElement.addEventListener('click', function (event) {
+    var target = event.target;
+    if (target.classList.contains('edit-button')) {
+        // Handle the edit button click event
+        // ...
+    }
+});
