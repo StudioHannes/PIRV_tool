@@ -1,302 +1,340 @@
+.sortable-ghost {
+    opacity: .6;
+}
+
+
 * {
-  font-family: 'Open Sans',Helvetica,sans-serif;
-  color: #4B4B4B;
+    font-family: 'Open Sans', Monsera, sans-serif;
+    color: #4B4B4B;
 }
 
 .no-print {
-  position: relative; /* set to relative to preserve child element position */
+    position: relative;
+    /* set to relative to preserve child element position */
 }
 
 @media print {
-  thead {display: table-header-group;}
-  tfoot {display: table-footer-group;}
-  body {margin: 0;}
-  .no-print {
-    display: none !important;
-  /* Disable headers and footers */
-  @page {
-    size: auto;  /* auto is the initial value */
-    margin: 0;  /* this affects the margin in the printer settings */
-    sheet: none;
-  }
-}
-  
-  /* prevent elements from changing position and size */
-  .no-print, .no-print * {
-    position: fixed !important;
-    left: 0;
-    top: 0;
-    color: #000;
-    background: #fff;
-    font-size: 16px;
-  }
+    thead {
+        display: table-header-group;
+    }
+
+    tfoot {
+        display: table-footer-group;
+    }
+
+    body {
+        margin: 0;
+    }
+
+    .no-print {
+        display: none !important;
+
+        /* Disable headers and footers */
+        @page {
+            size: auto;
+            /* auto is the initial value */
+            margin: 0;
+            /* this affects the margin in the printer settings */
+            sheet: none;
+        }
+    }
+
+    /* prevent elements from changing position and size */
+    .no-print,
+    .no-print * {
+        position: fixed !important;
+        left: 0;
+        top: 0;
+        color: #000;
+        background: #fff;
+        font-size: 16px;
+    }
 }
 
 
 body {
-  margin: 0;
-  padding: 0;
-  background-color:#fafafa;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
 }
 
-  /* Opacity of the cards ghost image that stays in its original place, till card is dropped  */
+/* Opacity of the cards ghost image that stays in its original place, till card is dropped  */
 .dragging {
-  opacity: 0.5;
+    opacity: 0.5;
 }
 
 /* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
 }
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
 }
 
 
 /* Set header styles */
 header {
-  width: auto;
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  align-items: baseline;
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    align-items: baseline;
 }
 
 /* Organization namemig container styling */
 header .info-container {
-  display: flex;
-  min-width: 280px;
-  margin-left: 20px;
-  align-items: stretch;
+    display: flex;
+    min-width: 280px;
+    margin-left: 20px;
+    align-items: stretch;
 }
 
 /* Organization name field styling */
 .info-container #university-name {
-  font-size: 13px;
-  width: 15em;
-  margin-top: 10px;
-  height: 30px;  
-  border: 2px solid #4B4B4B;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+    font-size: 13px;
+    width: 15em;
+    margin-top: 10px;
+    height: 30px;
+    border: 2px solid #4B4B4B;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
+#university-name-heading:first-letter {
+    text-transform: uppercase
+}
+
+
 .info-container button {
-  margin-top: 10px;
-  margin-left: 10px;
-  height: 53px;
-  font-size: 14px;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  color: #4B4B4B;
-  border: 2px solid #4B4B4B;
-  background-color: rgb(227, 234, 220);
+    margin-top: 10px;
+    margin-left: 10px;
+    height: 53px;
+    font-size: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    color: #4B4B4B;
+    border: 2px solid #4B4B4B;
+    background-color: rgb(227, 234, 220);
 }
 
 .info-container button:hover {
-  background-color: rgb(120, 170, 70);
-  border: 2px solid #4B4B4B;
-  color: #f7f7f7;
+    background-color: rgb(120, 170, 70);
+    border: 2px solid #4B4B4B;
+    color: #f7f7f7;
 }
 
 header .input-container {
-  margin-right: 20px;
-  margin-left: 10px;
-  width: auto;
-  height: 2em;
-  display: flex;
-  align-items: flex-end;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  align-items: center;
-  z-index: 3;
+    margin-right: 20px;
+    margin-left: 10px;
+    width: auto;
+    height: 2em;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    z-index: 3;
 }
 
 .fields #name {
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  /* width: 200px; */
-  border: 2px solid #4B4B4B;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    /* width: 200px; */
+    border: 2px solid #4B4B4B;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .fields #title {
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  /* width: 200px; */
-  border: 2px solid #4B4B4B;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    /* width: 200px; */
+    border: 2px solid #4B4B4B;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .fields #department {
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  /* width: 200px; */
-  border: 2px solid #4B4B4B;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    /* width: 200px; */
+    border: 2px solid #4B4B4B;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 .fields #responsibilities {
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  /* width: 250px; */
-  border: 2px solid #4B4B4B;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    /* width: 250px; */
+    border: 2px solid #4B4B4B;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 /* Styles for a headers data entry "Add Person-button"*/
 .input-container input[type="submit"] {
-  font-size: 14px;
-  height: 2em;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  color: #4B4B4B;
-  border: 2px solid #4B4B4B;
-  background-color: rgb(227, 234, 220);
+    font-size: 14px;
+    height: 2em;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    color: #4B4B4B;
+    border: 2px solid #4B4B4B;
+    background-color: rgb(227, 234, 220);
 }
 
 /* Styles for a hover effect for headers data entry "Add Person-button" */
 .input-container input[type="submit"]:hover {
-  background-color: rgb(120, 170, 70);
-  border: 2px solid #4B4B4B;
-  color: #f7f7f7;
+    background-color: rgb(120, 170, 70);
+    border: 2px solid #4B4B4B;
+    color: #f7f7f7;
 }
 
 
 /* Styles for a level containers */
 .levels {
-  color: rgb(255, 255, 255);
-  padding: 20px;
-  margin-top: 0px;
-  margin-bottom: 40px;
-  margin-left: 20px;
-  margin-right: 20px;
-  width: 100%;
-  min-height: 280px;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  position: relative;
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    margin-top: 0px;
+    margin-bottom: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: 100%;
+    min-height: 280px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    position: relative;
 }
 
+
 /* Border and background-color settings for a management level contianers */
-#level-1 {
-  background-color: hsl(51, 93%, 88%, 0.1);
-  border: 2px solid #4B4B4B;
+#level_1 {
+    background: hsl(51, 93%, 88%, 0.1);
+    border: 2px solid #4B4B4B;
 }
-#level-2 {
-  background-color: hsl(130, 95%, 90%, 0.1);
-  border: 2px solid #4B4B4B;
+
+#level_2 {
+    background: hsl(130, 95%, 90%, 0.1);
+    border: 2px solid #4B4B4B;
 }
-#level-3 {
-  background-color: hsl(18, 93%, 88%, 0.1);
-  border: 2px solid #4B4B4B;
+
+#level_3 {
+    background: hsl(18, 93%, 88%, 0.1);
+    border: 2px solid #4B4B4B;
 }
-#level-4 {
-  background-color: hsl(168, 93%, 88%, 0.1);
-  border: 2px solid #4B4B4B;
+
+#level_4 {
+    background: hsl(168, 93%, 88%, 0.1);
+    border: 2px solid #4B4B4B;
 }
 
 /* Styles for the management level tag */
 .level-tag {
-  color: rgb(255, 255, 255, 0.8);
-  font-family: 'Open Sans',Helvetica,sans-serif;
-  font-weight: 400;
-  position: absolute;
-  bottom: -60px;
-  left: 0;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 80px;
+    color: rgb(255, 255, 255, 0.8);
+    font-family: 'Open Sans', Helvetica, sans-serif;
+    font-weight: 400;
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 80px;
 }
 
 /* Styles for the management levels container (layout for displaying the level-containers)*/
 .levels-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* The management container layout settings */
 .level-container {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 /* "edit name"-buttons hover settings */
 .edit-level-name-button {
-  border: none;
-  padding: 4px;
-  margin-left: 10px;
-  background-color: rgb(189, 189, 189);
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
+    border: none;
+    padding: 4px;
+    margin-left: 10px;
+    background-color: rgb(189, 189, 189);
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
 }
 
 /* "edit name"-buttons hover settings */
 .edit-level-name-button:hover {
-  border: none;
-  background-color: rgb(158, 158, 158) ;
-  color: white;
+    border: none;
+    background-color: rgb(158, 158, 158);
+    color: white;
 }
 
 
@@ -315,39 +353,40 @@ header .input-container {
 }
 
 /* "add empty card" button settings */
-.ghost-button {
-  border: none;
-  padding: 4px;
-  margin-left: 10px;
-  background-color: rgb(189, 189, 189);
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
+.add-empty-card-button {
+    border: none;
+    padding: 4px;
+    margin-left: 10px;
+    background-color: rgb(189, 189, 189);
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
 }
 
 /* "add empty card" buttons hover settings */
-.ghost-button:hover {
-  border: none;
-  background-color: rgb(158, 158, 158) ;
-  color: white;
+.add-empty-card-button:hover {
+    border: none;
+    background-color: rgb(158, 158, 158);
+    color: white;
 }
 
 /* ghost-delete-button settings */
 .ghost-delete-button {
-  border: none;
-  margin: 6px;
-  padding: 4px, 6px;
-  background-color: rgb(189, 189, 189);
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
+    border: none;
+    margin: 6px;
+    padding: 4px, 6px;
+    background-color: rgb(189, 189, 189);
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
 }
 
 /* ghost-delete-button hover settings */
 .ghost-delete-button:hover {
-  border: none;
-  background-color: #ae4c4c; /* Green */
-  color: white;
+    border: none;
+    background-color: #ae4c4c;
+    /* Green */
+    color: white;
 }
 
 
@@ -377,12 +416,12 @@ header .input-container {
     justify-content: flex-start;
 }
 
-.person-input{
-  width: 85%;
-  font-size: 14px;
-  margin: 5px;
-  border: 1px solid #4B4B4B;
-  padding: 5px;
+.person-input {
+    width: 85%;
+    font-size: 14px;
+    margin: 5px;
+    border: 1px solid #4B4B4B;
+    padding: 5px;
 }
 
 /* The container for the person's title */
@@ -396,114 +435,116 @@ header .input-container {
 
 /* The container for the person's title */
 .person-title-container {
-  font-size: .8em;
-  font-weight: 300;
-  margin-bottom: -0.5em;  
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #4B4B4B;
+    font-size: .8em;
+    font-weight: 300;
+    margin-bottom: -0.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #4B4B4B;
 }
 
 /* The container for the person's department */
 .person-department-container {
-  font-size: .8em;
-  font-weight:600;  
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #4B4B4B;
+    font-size: .8em;
+    font-weight: 600;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #4B4B4B;
 }
 
 .fields #responsibilities {
-  font-size: 14px;
-  margin-bottom: 10px;
-  margin-right: 5px;
-  /* width: 250px; */
-  border: 2px solid #4B4B4B;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 15px;
-  padding-bottom: 15px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    /* width: 250px; */
+    border: 2px solid #4B4B4B;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 
 
 
-/* person cards edit-mode  fields settigs */
 
 /* The container for the person's responsibilities */
 .person-responsibilities-container {
-  font-size: .8em;
-  font-weight: 400;
-  padding-left: 10px;
-  padding-right: 10px;
-  color: #4B4B4B;
-  border-top: .5px solid #ababab;
+    font-size: .8em;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #4B4B4B;
+    border-top: .5px solid #ababab;
 }
 
 /* person cards footer section settings (are for buttons) */
-.person-footer-container{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* height: 1em; */
-  width: auto;
-  border-top: .5px solid #ababab;
-  padding: 7px 7px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-end;
+.person-footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* height: 1em; */
+    width: auto;
+    border-top: .5px solid #ababab;
+    padding: 7px 7px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 /* person cards footer section button settings */
-.copy-button, .edit-button, .delete-button {
-  border: none;
-  /* border: 2px solid #4B4B4B; */
-  padding: 4px, 6px;
-  background-color: rgb(189, 189, 189);
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
+.copy-button,
+.edit-button,
+.delete-button {
+    border: none;
+    /* border: 2px solid #4B4B4B; */
+    padding: 4px, 6px;
+    background-color: rgb(189, 189, 189);
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
 }
 
 .copy-button:hover {
-  border: none;
-  background-color: rgb(158, 158, 158) ;
-  color: white;
+    border: none;
+    background-color: rgb(158, 158, 158);
+    color: white;
 }
 
 .edit-button:hover {
-  border: none;
-  background-color: rgb(158, 158, 158) ;
-  color: white;
+    border: none;
+    background-color: rgb(158, 158, 158);
+    color: white;
 }
 
 .delete-button:hover {
-  border: none;
-  background-color: #ae4c4c; /* Green */
-  color: white;
+    border: none;
+    background-color: #ae4c4c;
+    /* Green */
+    color: white;
 }
 
 .copy-button {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 .edit-button {
-  margin-right: 5px;
+    margin-right: 5px;
 }
 
 .save-button {
-  border: none;
-  width: 50px;
-  position: sticky;
-  /* border: 2px solid #4B4B4B; */
-  margin-left: 55px;
-  margin-right: 55px;
-  margin-bottom: 7px;
-  margin-top: -7px;
-  background-color: #4CAF50;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  color: white;
+    border: none;
+    width: 50px;
+    position: sticky;
+    /* border: 2px solid #4B4B4B; */
+    margin-left: 55px;
+    margin-right: 55px;
+    margin-bottom: 7px;
+    margin-top: -7px;
+    background-color: #4CAF50;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    color: white;
 }
 
 
@@ -522,7 +563,7 @@ header .input-container {
 
 
 .hidden {
-  display: none;
+    display: none;
 }
 
 
@@ -544,7 +585,7 @@ header .input-container {
 
 .footer-container-logos {
     /* height: 100px;
-    width: 300px; */
+      width: 300px; */
     margin-right: 20px;
     margin-left: 20px;
     /* margin-top: -25px; */
@@ -554,84 +595,85 @@ header .input-container {
 }
 
 .logo {
-  margin-right: 30px;
-  height: 80px;
+    margin-right: 30px;
+    height: 80px;
 }
 
 .footer-description {
-  font-size: 12px;
-  width: auto;
-  margin-right: 10px;
-  padding-left: 20px;
-  align: right;
+    font-size: 12px;
+    width: auto;
+    margin-right: 10px;
+    padding-left: 20px;
+    align: right;
 }
 
 .footer-button-area {
-  display: flex;
-  width: auto;
-  z-index: 2;
+    display: flex;
+    width: auto;
+    z-index: 2;
 }
 
 .print-button {
-  font-size: 14px;
-  height: 2em;
-  margin-left: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  color: #4B4B4B;
-  border: 2px solid #4B4B4B;
-  background-color: rgb(227, 234, 220);
+    font-size: 14px;
+    height: 2em;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    color: #4B4B4B;
+    border: 2px solid #4B4B4B;
+    background-color: rgb(227, 234, 220);
 }
 
 #myBtn {
-  font-size: 14px;
-  height: 2em;
-  margin-left: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  color: #4B4B4B;
-  border: 2px solid #4B4B4B;
-  background-color: rgb(227, 234, 220);
+    font-size: 14px;
+    height: 2em;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    color: #4B4B4B;
+    border: 2px solid #4B4B4B;
+    background-color: rgb(227, 234, 220);
 }
 
-#exportBtn, #importBtn {
-  font-size: 14px;
-  height: 2em;
-  margin-left: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 15px;
-  padding-bottom: 30px;
-  color: #4B4B4B;
-  border: 2px solid #4B4B4B;
-  background-color: rgb(227, 234, 220);
+#exportBtn,
+#importBtn {
+    font-size: 14px;
+    height: 2em;
+    margin-left: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 30px;
+    color: #4B4B4B;
+    border: 2px solid #4B4B4B;
+    background-color: rgb(227, 234, 220);
 }
-  
+
 .print-button:hover {
-  background-color: rgb(120, 170, 70);
-  border: 2px solid rgb(120, 170, 70);
-  color: #f7f7f7;
+    background-color: rgb(120, 170, 70);
+    border: 2px solid rgb(120, 170, 70);
+    color: #f7f7f7;
 }
 
 #myBtn:hover {
-  background-color: rgb(190, 190, 190);
-  border: 2px solid rgb(190, 190, 190);
-  color: #f7f7f7;
+    background-color: rgb(190, 190, 190);
+    border: 2px solid rgb(190, 190, 190);
+    color: #f7f7f7;
 }
 
 #exportBtn:hover {
-  background-color: rgb(190, 190, 190);
-  border: 2px solid rgb(190, 190, 190);
-  color: #f7f7f7;
+    background-color: rgb(190, 190, 190);
+    border: 2px solid rgb(190, 190, 190);
+    color: #f7f7f7;
 }
 
 
 #importBtn:hover {
-  background-color: rgb(190, 190, 190);
-  border: 2px solid rgb(190, 190, 190);
-  color: #f7f7f7;
+    background-color: rgb(190, 190, 190);
+    border: 2px solid rgb(190, 190, 190);
+    color: #f7f7f7;
 }
