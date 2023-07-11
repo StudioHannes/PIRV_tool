@@ -1,129 +1,216 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PIRV-Tool</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Who-is-who</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script>
 </head>
 
 <body>
-
-
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>-Adding people and moveing them around by dragging and dropping.</p>
-      <p>-Individual card can be edited and removed.</p>
-      <p>-Adding empty cards, for spacing</p>
-    </div>
-
-  </div>
-
-  <header>
-    <div class="info-container">
-      <input type="text" id="university-name" autocomplete="off" placeholder="Name of the organization..." required
-        pattern="^[A-Za-z]+$">
-      <h2 id="university-name-heading"></h2>
-      <button class="no-print" id="university-name-button" onclick="toggleEdit()">Save</button>
-    </div>
-
-    <form class=" input-container no-print" onsubmit="addNewPerson(event)" id="input-form">
-      <div class="fields">
-        <input type="text" id="name" autocomplete="off" placeholder="name..." required pattern="^[A-Za-z]+$">
-        <input type="text" id="title" autocomplete="on" placeholder="title..." required pattern="^[A-Za-z]+$">
-        <input type="text" id="department" autocomplete="on" placeholder="department...">
-        <input type="text" id="responsibilities" autocomplete="off" placeholder="responsibilities...">
-        <input type="submit" id="submit-button" value="Add Person">
-      </div>
-    </form>
-  </header>
-
-  <section id="levels-container" class="levels-container">
-
-    <div class="levels" id="level-1">
-      <div class="level-container" id="level-container-1"></div>
-           <div class="level-tag">
-        <h5 id="level-1-name-title">Management level 1</h5>
-        <input type="text" id="level-1-name-input" class="edit-level-name-input no-print hidden">
-        <button type="button" id="level-1-edit-button" class="edit-level-name-button no-print"
-          onclick="editLevelName(1)">edit</button>
-        <button type="button" id="level-1-save-button" class="edit-level-name-button no-print hidden"
-          onclick="saveLevelName(1)">save</button>
-        <button type="button" id="ghost-button-1" class="ghost-button no-print" onclick="createGhost()">add empty
-          card</button>
+    <!-- Modal  -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>-Adding people and moving them around by dragging and dropping.</p>
+            <p>-Individual card can be edited and removed.</p>
+            <p>-Adding empty cards, for spacing</p>
         </div>
-      </div>
     </div>
 
-    <div class="levels" id="level-2">
-      <div class="level-container" id="level-container-2"></div>
-      <div class="level-tag">
-        <h5 id="level-2-name-title">Management level 2</h5>
-        <input type="text" id="level-2-name-input" class="edit-level-name-input no-print hidden">
-        <button type="button" id="level-2-edit-button" class="edit-level-name-button no-print"
-          onclick="editLevelName(2)">edit</button>
-        <button type="button" id="level-2-save-button" class="edit-level-name-button no-print hidden"
-          onclick="saveLevelName(2)">save</button>
-        <button type="button" id="ghost-button-2" class="ghost-button no-print" onclick="createGhost()">add empty
-          card</button>
-      </div>
-    </div>
+    <!-- Header - Organization name and input field -->
+    <header>
+        <div class="info-container">
+            <input type="text" id="university-name" autocomplete="off" placeholder="Name of the organization..."
+                required pattern="^[A-Za-z]+$">
+            <h2 id="university-name-heading"></h2>
+            <button class="no-print" id="university-name-button" onclick="toggleEdit()">Save</button>
+        </div>
 
-    <div class="levels" id="level-3">
-      <div class="level-container" id="level-container-3"></div>
-      <div class="level-tag">
-        <h5 id="level-3-name-title">Management level 3</h5>
-        <input type="text" id="level-3-name-input" class="edit-level-name-input no-print hidden">
-        <button type="button" id="level-3-edit-button" class="edit-level-name-button no-print"
-          onclick="editLevelName(3)">edit</button>
-        <button type="button" id="level-3-save-button" class="edit-level-name-button no-print hidden"
-          onclick="saveLevelName(3)">save</button>
-        <button type="button" id="ghost-button-3" class="ghost-button no-print" onclick="createGhost()">add empty
-          card</button>
-      </div>
-    </div>
+        <form class="input-container no-print" onsubmit="addNewPerson(event)" id="input-form">
+            <div class="fields">
+                <input type="text" id="name" autocomplete="off" placeholder="name..." required pattern="^[A-Za-z]+$">
+                <input type="text" id="title" autocomplete="on" placeholder="title..." required pattern="^[A-Za-z]+$">
+                <input type="text" id="department" autocomplete="on" placeholder="department...">
+                <input type="text" id="responsibilities" autocomplete="off" placeholder="responsibilities...">
+                <input type="submit" id="submit-button" value="Add Person">
+            </div>
+        </form>
+    </header>
 
-    <div class="levels" id="level-4">
-      <div class="level-container" id="level-container-4"></div>
-      <div class="level-tag">
-        <h5 id="level-4-name-title">Management level 4</h5>
-        <input type="text" id="level-4-name-input" class="edit-level-name-input no-print hidden">
-        <button type="button" id="level-4-edit-button" class="edit-level-name-button no-print"
-          onclick="editLevelName(4)">edit</button>
-        <button type="button" id="level-4-save-button" class="edit-level-name-button no-print hidden"
-          onclick="saveLevelName(4)">save</button>
-        <button type="button" id="ghost-button-4" class="ghost-button no-print" onclick="createGhost()">add empty
-          card</button>
-      </div>
-    </div>
+    <!-- Main content -->
+    <section id="levels-container" class="levels-container">
+        <div class="levels" id="level_1">
+            <div class="level-container" id="level_container_1">
+                <div class="person-container">
+                    <div class="person-info-container">
+                        <div class="person-name-container">
+                            <p>Bianca Rossi</p>
+                        </div>
+                        <div class="person-title-container">
+                            <p>Rector</p>
+                        </div>
+                        <div class="person-department-container">
+                            <p>University Management</p>
+                        </div>
+                        <div class="person-responsibilities-container">
+                            <p>Overall Lead of the University</p>
+                        </div>
+                    </div>
+                    <div class="person-footer-container no-print" data-print="exclude">
+                        <button class="copy-button no-print" data-print="exclude" type="button">Copy</button>
+                        <button class="edit-button no-print" data-print="exclude" type="button">Edit</button>
+                        <button class="delete-button no-print" data-print="exclude" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="level-tag">
+                <h5 id="level-1-name-title">Management level 1</h5>
+                <input type="text" id="level-1-name-input" class="edit-level-name-input no-print hidden">
+                <button type="button" id="level-1-edit-button" class="edit-level-name-button no-print"
+                    onclick="editLevelName(1)">edit</button>
+                <button type="button" id="level-1-save-button" class="edit-level-name-button no-print hidden"
+                    onclick="saveLevelName(1)">save</button>
+                <button type="button" class="add-empty-card-button no-print" onclick="createGhost(event)">add empty
+                    card</button>
+            </div>
+        </div>
 
-  </section>
+        <div class="levels" id="level_2">
+            <div class="level-container" id="level_container_2">
+                <div class="person-container">
+                    <div class="person-info-container">
+                        <div class="person-name-container">
+                            <p>Louis Durand</p>
+                        </div>
+                        <div class="person-title-container">
+                            <p>Vice-Rector for International Affairs</p>
+                        </div>
+                        <div class="person-department-container">
+                            <p>University Management</p>
+                        </div>
+                        <div class="person-responsibilities-container">
+                            <p>Overall Lead International Affairs</p>
+                        </div>
+                    </div>
+                    <div class="person-footer-container no-print" data-print="exclude">
+                        <button class="copy-button no-print" data-print="exclude" type="button">Copy</button>
+                        <button class="edit-button no-print" data-print="exclude" type="button">Edit</button>
+                        <button class="delete-button no-print" data-print="exclude" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="level-tag">
+                <h5 id="level-2-name-title">Management level 2</h5>
+                <input type="text" id="level-2-name-input" class="edit-level-name-input no-print hidden">
+                <button type="button" id="level-2-edit-button" class="edit-level-name-button no-print"
+                    onclick="editLevelName(2)">edit</button>
+                <button type="button" id="level-2-save-button" class="edit-level-name-button no-print hidden"
+                    onclick="saveLevelName(2)">save</button>
+                <button type="button" class="add-empty-card-button no-print" onclick="createGhost(event)">add empty
+                    card</button>
+            </div>
+        </div>
 
+        <div class="levels" id="level_3">
 
-  <footer class="footer-container">
-    <div class="footer-container-logos">
-      <img src="media/pirv-logo.png" alt="PIRV logo" class="logo">
-      <img src="media/erasmus-logo.png" alt="Erasmus logo" class="logo">
-    </div>
+            <div class="level-container" id="level_container_3">
+                <div class="person-container">
+                    <div class="person-info-container">
+                        <div class="person-name-container">
+                            <p>Sami Virtanen</p>
+                        </div>
+                        <div class="person-title-container">
+                            <p>Head of International Relations Office</p>
+                        </div>
+                        <div class="person-department-container">
+                            <p>International Relations Office</p>
+                        </div>
+                        <div class="person-responsibilities-container">
+                            <p>Head Coordinator International Relations</p>
+                        </div>
+                    </div>
+                    <div class="person-footer-container no-print" data-print="exclude">
+                        <button class="copy-button no-print" data-print="exclude" type="button">Copy</button>
+                        <button class="edit-button no-print" data-print="exclude" type="button">Edit</button>
+                        <button class="delete-button no-print" data-print="exclude" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="level-tag">
+                <h5 id="level-3-name-title">Management level 3</h5>
+                <input type="text" id="level-3-name-input" class="edit-level-name-input no-print hidden">
+                <button type="button" id="level-3-edit-button" class="edit-level-name-button no-print"
+                    onclick="editLevelName(3)">edit</button>
+                <button type="button" id="level-3-save-button" class="edit-level-name-button no-print hidden"
+                    onclick="saveLevelName(3)">save</button>
+                <button type="button" class="add-empty-card-button no-print" onclick="createGhost(event)">add empty
+                    card</button>
+            </div>
+        </div>
 
-    <div class="footer-button-area no-print">
-      <button type="button" id="myBtn" class="help-button no-print" onclick="window.print()">Help</button>
-      <button type="button" id="exportBtn" class="no-print">Save</button>
-      <button type="button" id="importBtn" class="no-print">Load</button>
-      <button type="button" class="print-button no-print" onclick="preparePrint()">Print</button>
-    </div>
+        <div class="levels" id="level_4">
+            <div class="level-container" id="level_container_4">
+                <div class="person-container">
+                    <div class="person-info-container">
+                        <div class="person-name-container">
+                            <p>Sabine Weber</p>
+                        </div>
+                        <div class="person-title-container">
+                            <p>Mobility Specialist</p>
+                        </div>
+                        <div class="person-department-container">
+                            <p>International Relations Office</p>
+                        </div>
+                        <div class="person-responsibilities-container">
+                            <p>Incoming Erasmus+ mobility</p>
+                        </div>
+                    </div>
+                    <div class="person-footer-container no-print" data-print="exclude">
+                        <button class="copy-button no-print" data-print="exclude" type="button">Copy</button>
+                        <button class="edit-button no-print" data-print="exclude" type="button">Edit</button>
+                        <button class="delete-button no-print" data-print="exclude" type="button">Delete</button>
+                    </div>
+                </div>
+            </div>
+            <div class="level-tag">
+                <h5 id="level-4-name-title">Management level 4</h5>
+                <input type="text" id="level-4-name-input" class="edit-level-name-input no-print hidden">
+                <button type="button" id="level-4-edit-button" class="edit-level-name-button no-print"
+                    onclick="editLevelName(4)">edit</button>
+                <button type="button" id="level-4-save-button" class="edit-level-name-button no-print hidden"
+                    onclick="saveLevelName(4)">save</button>
+                <button type="button" class="add-empty-card-button no-print" onclick="createGhost(event)">add empty
+                    card</button>
+            </div>
+        </div>
 
-  </footer>
+        <button type="button" class="add-new-row-button no-print"">add new row</button>
 
-  <div class="error-container"></div>
+    </section>
 
-  <script src="app.js"></script>
-  <script src="modal.js"></script>
+    <!-- Footer - Logos and buttons -->
+    <footer class=" footer-container">
+            <div class="footer-container-logos">
+                <img src="media/pirv-logo.png" alt="PIRV logo" class="logo">
+                <img src="media/erasmus-logo.png" alt="Erasmus logo" class="logo">
+            </div>
+
+            <div class="footer-button-area no-print">
+                <button type="button" id="myBtn" class="help-button no-print" onclick="window.print()">Help</button>
+                <button type="button" id="exportBtn" class="no-print">Save</button>
+                <button type="button" id="importBtn" class="no-print">Load</button>
+                <button type="button" class="print-button no-print" onclick="preparePrint()">Print</button>
+            </div>
+            </footer>
+
+            <div class="error-container"></div>
+
+            <script src="main.js"></script>
+            <script src="modal.js"></script>
 </body>
 
 </html>
