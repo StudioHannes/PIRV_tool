@@ -359,42 +359,61 @@ function preparePrint() {
     }
 }
 
-// Function to save the levels-container section as a file
-function saveLevelsContainer() {
+function save() {
+    // Get the levels container element
     const levelsContainer = document.getElementById('levels-container');
-    const levelsContainerHTML = levelsContainer.innerHTML;
 
-    // Create a Blob with the HTML content
-    const blob = new Blob([levelsContainerHTML], { type: 'text/html' });
+    // Create a clone of the levels container to preserve its state
+    const clone = levelsContainer.cloneNode(true);
 
-    // Create a temporary <a> element and set its attributes
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = 'levels-container.html';
+    // Convert the cloned levels container to an HTML string
+    const htmlString = clone.outerHTML;
 
-    // Programmatically trigger a click event on the <a> element
-    a.click();
+    // Create a new Blob object
+    const blob = new Blob([htmlString], {
+        type: 'text/html',
+    });
 
-    // Clean up the URL object
-    URL.revokeObjectURL(a.href);
+    // Set the file name
+    const fileName = 'export.html';
+
+    // Create a new FileSaver object
+    const fileSaver = new FileSaver();
+
+    // Save the file
+    fileSaver.save(blob, fileName);
 }
 
-// Function to load the levels-container section from a file
-function loadLevelsContainer(event) {
-    const fileInput = event.target;
-    const file = fileInput.files[0];
+function load() {
+    // Get the file name
+    const fileName = prompt('Enter the file name');
 
-    if (file) {
-        const reader = new FileReader();
+    // Create a new XMLHttpRequest object
+    const xhr = new XMLHttpRequest();
 
-        reader.onload = function () {
-            const levelsContainer = document.getElementById('levels-container');
-            levelsContainer.innerHTML = reader.result;
-            setupEventListeners(); // Reattach event listeners to the buttons
-        };
+    // Handle the onload event
+    xhr.onload = function () {
+        // Get the response text
+        const responseText = xhr.responseText;
 
-        reader.readAsText(file);
-    }
+        // Parse the response as HTML
+        const parsedHTML = new DOMParser().parseFromString(responseText, 'text/html');
+
+        // Get the levels container from the parsed HTML
+        const levelsContainer = parsedHTML.getElementById('levels-container');
+
+        // Get the current levels container on the page
+        const currentLevelsContainer = document.getElementById('levels-container');
+
+        // Replace the current levels container with the loaded one
+        currentLevelsContainer.innerHTML = levelsContainer.innerHTML;
+    };
+
+    // Open the file
+    xhr.open('GET', fileName, true);
+
+    // Send the request
+    xhr.send();
 }
 
 // Add event listener to the export button
