@@ -40,8 +40,8 @@ will result in a better-proportioned printed version of the file</p>
 
         <form class="input-container no-print" onsubmit="addNewPerson(event)" id="input-form">
             <div class="fields">
-                <input type="text" id="name" autocomplete="off" placeholder="name..." required pattern="^[A-Za-z]+$">
-                <input type="text" id="title" autocomplete="on" placeholder="title..." required pattern="^[A-Za-z]+$">
+                <input type="text" id="name" autocomplete="off" placeholder="name..." required pattern="^[A-Za-z\u00C0-\u017F]+$">
+                <input type="text" id="title" autocomplete="on" placeholder="title..." required pattern="^[A-Za-z\u00C0-\u017F]+$">
                 <input type="text" id="department" autocomplete="on" placeholder="department...">
                 <input type="text" id="responsibilities" autocomplete="off" placeholder="responsibilities...">
                 <input type="submit" id="submit-button" value="Add Person">
