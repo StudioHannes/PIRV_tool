@@ -120,6 +120,9 @@ function createCard(levelContainer, name, title, department, responsibilities) {
     copyButton.addEventListener('click', handleCopyButtonClick);
     editButton.addEventListener('click', handleEditButtonClick);
     deleteButton.addEventListener('click', handleDeleteButtonClick);
+
+    // Attach event listeners to the buttons in the created card
+    attachEventListenersToCard(personContainer);
 }
 
 // Get a reference to the form element
@@ -167,16 +170,6 @@ function handleEditButtonClick(event) {
     editPerson(cardElement);
 }
 
-// Function to handle card deletion
-function deleteCard(cardElement) {
-    if (cardElement.parentNode) {
-        // Get the parent container of the card
-        const levelContainer = cardElement.parentNode;
-
-        // Remove the card from the parent container
-        levelContainer.removeChild(cardElement);
-    }
-}
 
 // Function to handle the delete button click
 function handleDeleteButtonClick(event) {
@@ -186,8 +179,6 @@ function handleDeleteButtonClick(event) {
         deleteCard(cardElement);
     }
 }
-
-
 
 
 
@@ -222,18 +213,11 @@ function copyCard(cardElement) {
 
 // Function to handle the edit button click
 function editPerson(personContainer) {
-    const personNameContainer = personContainer.querySelector(
-        '.person-name-container'
-    );
-    const personTitleContainer = personContainer.querySelector(
-        '.person-title-container'
-    );
-    const personDepartmentContainer = personContainer.querySelector(
-        '.person-department-container'
-    );
-    const personResponsibilitiesContainer = personContainer.querySelector(
-        '.person-responsibilities-container'
-    );
+    const cardElement = personContainer.parentElement; // Use parentElement instead of closest('.card')
+    const personNameContainer = personContainer.querySelector('.person-name-container');
+    const personTitleContainer = personContainer.querySelector('.person-title-container');
+    const personDepartmentContainer = personContainer.querySelector('.person-department-container');
+    const personResponsibilitiesContainer = personContainer.querySelector('.person-responsibilities-container');
     const editButton = personContainer.querySelector('.edit-button');
     const deleteButton = personContainer.querySelector('.delete-button');
     const copyButton = personContainer.querySelector('.copy-button');
@@ -274,38 +258,34 @@ function editPerson(personContainer) {
 
     // Append the save button
     personContainer.appendChild(saveButton);
+
+    // Disable drag and drop for the card being edited
+    const sortableParent = cardElement.closest('.level-container');
+    const sortableInstance = Sortable.get(sortableParent);
+    sortableInstance.option('disabled', true);
+
+    // Remove the sortable class to prevent hover effect
+    cardElement.classList.remove('sortable-item');
 }
+
+
+
 
 // Function to save the edited person
 function savePerson(personContainer) {
-    const personNameContainer = personContainer.querySelector(
-        '.person-name-container'
-    );
-    const personTitleContainer = personContainer.querySelector(
-        '.person-title-container'
-    );
-    const personDepartmentContainer = personContainer.querySelector(
-        '.person-department-container'
-    );
-    const personResponsibilitiesContainer = personContainer.querySelector(
-        '.person-responsibilities-container'
-    );
+    const cardElement = personContainer.parentElement; // Use parentElement instead of closest('.card')
+    const personNameContainer = personContainer.querySelector('.person-name-container');
+    const personTitleContainer = personContainer.querySelector('.person-title-container');
+    const personDepartmentContainer = personContainer.querySelector('.person-department-container');
+    const personResponsibilitiesContainer = personContainer.querySelector('.person-responsibilities-container');
     const editButton = personContainer.querySelector('.edit-button');
     const deleteButton = personContainer.querySelector('.delete-button');
     const copyButton = personContainer.querySelector('.copy-button');
     const saveButton = personContainer.querySelector('.save-button');
-    const personNameInput = personContainer.querySelector(
-        '.person-name-container input'
-    );
-    const personTitleInput = personContainer.querySelector(
-        '.person-title-container input'
-    );
-    const personDepartmentInput = personContainer.querySelector(
-        '.person-department-container input'
-    );
-    const personResponsibilitiesInput = personContainer.querySelector(
-        '.person-responsibilities-container input'
-    );
+    const personNameInput = personContainer.querySelector('.person-name-container input');
+    const personTitleInput = personContainer.querySelector('.person-title-container input');
+    const personDepartmentInput = personContainer.querySelector('.person-department-container input');
+    const personResponsibilitiesInput = personContainer.querySelector('.person-responsibilities-container input');
     const personName = personNameInput.value.trim();
     const personTitle = personTitleInput.value.trim();
     const personDepartment = personDepartmentInput.value.trim();
@@ -337,7 +317,16 @@ function savePerson(personContainer) {
 
     // Remove the save button
     saveButton.remove();
+
+    // Re-enable drag and drop for the card
+    const sortableParent = cardElement.closest('.level-container');
+    const sortableInstance = Sortable.get(sortableParent);
+    sortableInstance.option('disabled', false);
+
+    // Add the sortable class to restore hover effect
+    cardElement.classList.add('sortable-item');
 }
+
 
 function preparePrint() {
     var ghostContainers = document.querySelectorAll('.ghost-container');
@@ -381,6 +370,13 @@ function save() {
     saveAs(blob, fileName);
 }
 
+function attachEventListenersToCards(levelContainer) {
+    const cards = levelContainer.querySelectorAll('.person-container');
+    cards.forEach((card) => {
+        attachEventListenersToCard(card);
+    });
+}
+
 function load() {
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -402,9 +398,10 @@ function load() {
             const newLevelContainers = existingLevelsContainer.querySelectorAll('.level-container');
             newLevelContainers.forEach(function (levelContainer) {
                 Sortable.create(levelContainer, options);
-                attachEventListenersToCards(levelContainer);
+                attachEventListenersToCards(levelContainer); // Attach event listeners to the newly loaded cards
             });
 
+            setupEventListeners(); // Reattach event listeners to all buttons
 
         };
 
@@ -413,6 +410,7 @@ function load() {
 
     fileInput.click();
 }
+
 
 function attachEventListeners() {
     var parentElement = document.body;
@@ -446,34 +444,20 @@ function attachEventListeners() {
     });
 }
 
-function attachEventListenersToCards(parentElement) { // Moved this function definition before calling it in load()
-    parentElement.addEventListener('click', function (event) {
-        var target = event.target;
-        if (target.classList.contains('copy-button')) {
-            var card = target.closest('.card');
-            var cardContent = card.querySelector('.card-content').innerHTML;
-            // Perform the copy action using the card content
-            console.log('Copy button clicked:', cardContent);
-        }
-    });
+// Function to attach event listeners to the buttons in a card
+function attachEventListenersToCard(cardElement) {
+    const copyButton = cardElement.querySelector('.copy-button');
+    const editButton = cardElement.querySelector('.edit-button');
+    const deleteButton = cardElement.querySelector('.delete-button');
 
-    parentElement.addEventListener('click', function (event) {
-        var target = event.target;
-        if (target.classList.contains('delete-button')) {
-            var card = target.closest('.card');
-            // Perform the delete action with the card element
-            console.log('Delete button clicked:', card);
-        }
-    });
+    // Add event listener to the copy button
+    copyButton.addEventListener('click', handleCopyButtonClick);
 
-    parentElement.addEventListener('click', function (event) {
-        var target = event.target;
-        if (target.classList.contains('edit-button')) {
-            var card = target.closest('.card');
-            // Perform the edit action with the card element
-            console.log('Edit button clicked:', card);
-        }
-    });
+    // Add event listener to the edit button
+    editButton.addEventListener('click', handleEditButtonClick);
+
+    // Add event listener to the delete button
+    deleteButton.addEventListener('click', handleDeleteButtonClick);
 }
 
 
@@ -504,29 +488,29 @@ setupEventListeners();
 // Add event listener to the form submit event
 form.addEventListener('submit', addNewPerson);
 
-// Add event listener to the "Add empty card" buttons
-const emptyButtons = document.querySelectorAll('.add-empty-card-button');
-emptyButtons.forEach((button) => {
-    button.addEventListener('click', createGhost);
-});
 
-// Function to create an empty card (ghost)
+// Create empty card (ghost)
 function createGhost(event) {
     const levelContainer = event.target.closest('.level-tag').previousElementSibling;
 
     const ghostContainer = document.createElement('div');
-    ghostContainer.classList.add('ghost-container');
+    ghostContainer.classList.add('person-container', 'ghost-container');
+
+    const ghostFooterContainer = document.createElement('div');
+    ghostFooterContainer.classList.add('no-print', 'ghost-footer-container');
 
     const deleteButton = document.createElement('button');
-    deleteButton.classList.add('ghost-delete-button');
+    deleteButton.classList.add('delete-button', 'no-print');
+    deleteButton.setAttribute('type', 'button');
     deleteButton.textContent = 'Delete';
 
-    ghostContainer.appendChild(deleteButton);
+    ghostFooterContainer.appendChild(deleteButton);
+    ghostContainer.appendChild(ghostFooterContainer);
     levelContainer.appendChild(ghostContainer);
 
     // Add event listener to the delete button of the created empty card
     deleteButton.addEventListener('click', function () {
-        levelContainer.removeChild(ghostContainer);
+        deleteCard(ghostContainer);
     });
 
     // Remove the event listener from the "Add empty card" button
@@ -534,7 +518,30 @@ function createGhost(event) {
 }
 
 
-// Your existing JavaScript code
+// Function to handle card deletion
+function deleteCard(cardElement) {
+    if (cardElement.parentNode) {
+        // Get the parent container of the card
+        const levelContainer = cardElement.parentNode;
+
+        // Remove the card from the parent container
+        levelContainer.removeChild(cardElement);
+    }
+}
+
+// Attach event listeners to the existing cards
+const existingCards = document.querySelectorAll('.person-container');
+existingCards.forEach((card) => {
+    attachEventListenersToCard(card);
+});
+
+
+// Attach event listeners to the "Add empty card" buttons
+const emptyButtons = document.querySelectorAll('.add-empty-card-button');
+emptyButtons.forEach((button) => {
+    button.addEventListener('click', createGhost);
+});
+
 
 // Attach event listeners to a parent element that already exists on the page
 var parentElement = document.body;
